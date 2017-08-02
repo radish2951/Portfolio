@@ -8,6 +8,10 @@ img {
     width: 100%;
 }
 
+.container#content {
+    max-width: 1000px;
+}
+
 header.navbar {
     background: none;
     border: none;
@@ -40,6 +44,6 @@ header.navbar {
 }
 
 div.post {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }

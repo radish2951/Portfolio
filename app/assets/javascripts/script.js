@@ -140,3 +140,21 @@ function scrollable() {
     return $("body").height() > $(window).height();
 
 }
+
+
+
+ function transparentOnHover() {
+
+    $("img").on({
+        "mouseenter": function() {
+            $(this).animate({
+                opacity: 0.5
+            }, 100);
+        },
+        "mouseleave": function() {
+            $(this).animate({
+                opacity: 1
+            }, 100);
+        }
+    });
+} 

@@ -1,3 +1,6 @@
-<% if current_category_name == "Video" %>
-  <%= javascript_include_tag 'videos.js' %>
+<% path = request.path_info.split('/').join.singularize.capitalize %>
+<% if path == "Video" %>
+  <%= javascript_include_tag 'videos' %>
+<% elsif path == "Photo" %>
+  <%= javascript_include_tag 'photos' %>
 <% end %>
