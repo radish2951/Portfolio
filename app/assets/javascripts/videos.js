@@ -1,7 +1,8 @@
 $(function() {
-    //hideExceptImgs();
-    //transparentOnHover();
+
+    hideExceptImgs();
     showTitleOnHover();
+
 });
 
 function showGifOnBg() {

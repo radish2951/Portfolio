@@ -2,7 +2,7 @@
 <%= render partial: 'description', locals: { post: @post } %>
 
 <% if ["Video", "Photo"].include?(current_category_name) %>
-  <%= render partial: 'images', locals: { post: @post, include_thumbnail: false } %>
+  <%# render partial: 'images', locals: { post: @post, include_thumbnail: false } %>
 <% end %>
 
 <%= render partial: 'admin_buttons', locals: { post: @post } %>

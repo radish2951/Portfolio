@@ -1,7 +1,7 @@
 $(function() {
 
     var intervalId = displayLoadingIcon();
-    var src = removeSrcFromImg();
+    var src = removeSrcFromImgs();
 
 });
 
@@ -9,7 +9,7 @@ $(window).on("load", function() {
 
     showContentOnLoad(intervalId);
     renameObjOnHover($(".unthumbnailize"), "サムネイルを解除");
-    showImgOnScroll(src);
+    showImgOnScroll(src, 1000, 100);
 
 });
 
@@ -21,14 +21,13 @@ function displayLoadingIcon() {
 
     var w = $(window).width();
     var h = $(window).height();
-    var hh = parseInt($("header").css("height"));
+    var hh = $("header").height();
     var $content = $("#content");
 
     $content.hide();
 
-    $("body").append("<canvas></canvas>");
+    $("body").append('<canvas id="cv"></canvas>');
     $("canvas").attr({
-        "id": "cv",
         "width": w,
         "height" : h
     });
@@ -60,10 +59,12 @@ function displayLoadingIcon() {
 };
 
 function showContentOnLoad(id) {
+
     $("canvas").remove();
     $("#content").fadeIn();
     $("body").css("overflow", "");
     clearInterval(id); 
+
 };
 
 
@@ -84,7 +85,7 @@ function renameObjOnHover($obj, target) {
 
 
 
-function removeSrcFromImg() {
+function removeSrcFromImgs() {
 
     $img = $("img");
     src = $img.map(function() { return $(this).attr("src"); });
@@ -97,7 +98,7 @@ function removeSrcFromImg() {
 
 
 
-function showImgOnScroll(src) {
+function showImgOnScroll(src, speed, preload) {
 
     $img = $("img");
 
@@ -109,8 +110,8 @@ function showImgOnScroll(src) {
     $img.on("load", function() {
 
         $(this).animate({
-            "opacity": "1"
-        }, 1000);
+            "opacity": 1
+        }, speed);
 
         bottomOfLoadedImgs = $(this).offset().top + parseInt($(this).css("height"));
 
@@ -122,7 +123,7 @@ function showImgOnScroll(src) {
 
     $(window).on("scroll", function() {
         
-        if (bottomOfLoadedImgs < $(this).scrollTop() + $(window).height() + 1) {
+        if (bottomOfLoadedImgs < $(this).scrollTop() + $(window).height() + preload) {
             $img.eq(++i).attr("src", src[i]);
         }
     });

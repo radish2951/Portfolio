@@ -17,4 +17,3 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require script.js
-//= require videos.js
