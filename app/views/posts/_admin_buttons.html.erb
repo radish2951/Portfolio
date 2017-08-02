@@ -1,0 +1,5 @@
+<% if logged_in? %>                                                                                        
+  <%= link_to "編集", edit_post_path(post), class: "btn btn-default" %>                                    
+  <%= link_to_flip post, class: "btn btn-default" %>                                                       
+  <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>

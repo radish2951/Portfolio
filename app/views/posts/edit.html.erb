@@ -1,0 +1,30 @@
+<%= render 'form' %>
+
+<%= form_for :image, url: images_path, method: :post, html: { class: "form-inline" } do |f| %>
+
+  <%= f.label "画像を追加", class: "sr-only" %>
+  <%= f.text_field :name, placeholder: "example.jpg", class: "form-control" %>
+
+  <%= f.hidden_field :post_id, value: @post.id %>
+
+  <%= f.submit "画像を追加", class: "btn btn-default" %>
+
+<% end %>
+
+<div class="row">
+  <% @post.images.each do |image| %>
+    <div class="col-md-3">
+    <%= image_tag image.name, class: "img-responsive" %>
+    <%= image.name %>
+    </div>
+    <div class= "col-md-9">
+      <% if @post.has_thumbnail? and !image.type.nil? %>
+        <%= link_to "サムネイル", thumbnailize_image_path(image), method: :patch, class: "btn btn-info unthumbnailize" %>
+      <% elsif !@post.has_thumbnail? %>
+        <%= link_to "サムネイルに登録", thumbnailize_image_path(image), method: :patch, class: "btn btn-default" %>
+      <% end %>
+      <%= link_to "削除", image_path(image), method: :delete, data: { confirm: "削除しますか?" }, class: "btn btn-danger" %>
+    </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>

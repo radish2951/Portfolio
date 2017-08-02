@@ -1,0 +1,4 @@
+<h2>
+  <%= post.published ? nil : "非公開: " %>
+  <%= link ? link_to(post.title, post_title_path(post)) : post.title %>
+</h2>

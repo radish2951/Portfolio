@@ -1,0 +1,18 @@
+<% @posts.each do |post| %>
+
+  <div class="post">
+
+  <%= render partial: 'title', locals: { post: post, link: true } %>
+  <p><%= strip_tags(convert_to_html(post.description)) %></p>
+  <%= image_tag post.thumbnail.name, class: "img-responsive" unless post.thumbnail.nil? %>
+
+  <%= render partial: 'admin_buttons', locals: { post: post } %>
+
+  </div>
+
+<% end %>
+
+<% if logged_in? %>
+  <%= link_to "新規投稿", new_post_path %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+<% end %>
