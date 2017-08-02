@@ -71,33 +71,16 @@ function showContentOnLoad(id) {
 function renameObjOnHover($obj, target) {
 
     var origin = $obj.text();
-    var originalWidth = parseInt($obj.css("width"));
-    var targetWidth;
 
-    $obj.text(target);
-
-    targetWidth = parseInt($obj.css("width"));
-
-    $obj.text(origin);
-
-
-    $obj.hover(function() {
-
-        $(this).animate({
-            "width": targetWidth
-        }, 200);
-
-        $(this).text(target);
-
-    }, function() {
-
-        $(this).animate({
-            "width": originalWidth
-        }, 100);
-
-        $(this).text(origin);
+    $obj.on({
+        "mouseenter": function() {
+            $(this).text(target);
+        },
+        "mouseleave": function() {
+            $(this).text(origin);
+        }
     });
-};
+}
 
 
 

@@ -19,11 +19,11 @@
     </div>
     <div class= "col-md-9">
       <% if @post.has_thumbnail? and !image.type.nil? %>
-        <%= link_to "サムネイル", thumbnailize_image_path(image), method: :patch, class: "btn btn-info unthumbnailize" %>
+        <%= link_to "サムネイル", thumbnailize_image_path(image), method: :patch, class: "unthumbnailize" %>
       <% elsif !@post.has_thumbnail? %>
-        <%= link_to "サムネイルに登録", thumbnailize_image_path(image), method: :patch, class: "btn btn-default" %>
+        <%= link_to "サムネイルに登録", thumbnailize_image_path(image), method: :patch %>
       <% end %>
-      <%= link_to "削除", image_path(image), method: :delete, data: { confirm: "削除しますか?" }, class: "btn btn-danger" %>
+      <%= link_to "削除", image_path(image), method: :delete, data: { confirm: "削除しますか?" } %>
     </div>
     <div class="clearfix"></div>
   <% end %>
