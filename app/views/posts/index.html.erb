@@ -1,12 +1,26 @@
 <% @posts.each do |post| %>
 
-  <div class="post">
+  <div class="<%= "post post-" + current_category_name.to_s.downcase %>">
 
-    <% if %w(Video Photo Graphic).include?(current_category_name) %>
+    <% if %w(Video).include?(current_category_name) %>
+
       <%= render partial: 'title', locals: { post: post, link: true } %>
       <%= image_tag post.thumbnail.name, class: "img-responsive" unless post.thumbnail.nil? %>
-    <% elsif current_category_name == "Article" %>
+
+    <% elsif %w(Photo Graphic).include?(current_category_name) %>
+
+      <% if post.thumbnail.nil? %>
+        <%= render partial: 'title', locals: { post: post, link: true } %>
+      <% else %>
+        <%= link_to image_tag(post.thumbnail.name, class: "img-responsive"), post_title_path(post) %>
+      <% end %>
+
+    <% elsif %w(Article).include?(current_category_name) %>
+
       <%= render partial: 'title', locals: { post: post, link: true } %>
+      <p><%= post.created_at.localtime %></p>
+      <%= convert_to_html(post.description).html_safe %>
+
     <% end %>
 
   </div>

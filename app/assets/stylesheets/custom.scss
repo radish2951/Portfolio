@@ -8,8 +8,9 @@ img {
     width: 100%;
 }
 
-.container#content {
+#content {
     max-width: 1000px;
+    margin-bottom: 20px;
 }
 
 header.navbar {
@@ -46,4 +47,9 @@ header.navbar {
 div.post {
     margin-top: 12px;
     margin-bottom: 12px;
+}
+
+#content.content-photo {
+    max-width: none;
+    width: 100%;
 }
