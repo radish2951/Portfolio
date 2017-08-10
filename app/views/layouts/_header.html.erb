@@ -1,14 +1,13 @@
-<header class="navbar navbar-default">
-  <div class="container">
-    <nav>
-      <div class="navbar-header">
-        <%= link_to "Daiki Ikeda", root_url, class: "navbar-brand" %>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-      <% Category.all.each do |category| %>
-        <li><%= link_to category.name, category_name_path(category) %></li>
-      <% end %>
-      </ul>
-    </nav>
-  </div>
+<header>
+  <nav>
+    <div class="home">
+      <%= link_to "Daiki Ikeda", root_url %>
+    </div>
+    <ul>
+    <% Category.all.each do |category| %>
+      <li><%= link_to category.name, category_name_path(category) %></li>
+    <% end %>
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
 </header>

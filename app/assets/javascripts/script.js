@@ -1,7 +1,7 @@
 $(function() {
 
     var intervalId = displayLoadingIcon();
-    var src = removeSrcFromImgs();
+    // var src = removeSrcFromImgs();
 
 });
 
@@ -9,7 +9,7 @@ $(window).on("load", function() {
 
     showContentOnLoad(intervalId);
     renameObjOnHover($(".unthumbnailize"), "サムネイルを解除");
-    showImgOnScroll(src, 1000, 100);
+    // showImgOnScroll(src, 1000, 100);
 
 });
 
@@ -158,3 +158,19 @@ function scrollable() {
         }
     });
 } 
+
+
+
+function device() {
+
+    var ua = navigator.userAgent;
+
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0 || ua.indexOf('iPod') > 0 && ua.indexOf('Mobile')) {
+        return 'sp';
+    } else if (ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
+        return 'tab';
+    } else {
+        return 'pc';
+    }
+
+}

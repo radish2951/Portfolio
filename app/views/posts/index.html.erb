@@ -1,3 +1,4 @@
+<% @posts = @posts.shuffle %>
 <% @posts.each do |post| %>
 
   <div class="<%= "post post-" + current_category_name.to_s.downcase %>">
@@ -5,14 +6,14 @@
     <% if %w(Video).include?(current_category_name) %>
 
       <%= render partial: 'title', locals: { post: post, link: true } %>
-      <%= image_tag post.thumbnail.name, class: "img-responsive" unless post.thumbnail.nil? %>
+      <%= image_tag post.thumbnail.name unless post.thumbnail.nil? %>
 
     <% elsif %w(Photo Graphic).include?(current_category_name) %>
 
       <% if post.thumbnail.nil? %>
         <%= render partial: 'title', locals: { post: post, link: true } %>
       <% else %>
-        <%= link_to image_tag(post.thumbnail.name, class: "img-responsive"), post_title_path(post) %>
+        <%= link_to image_tag(post.thumbnail.name), post_title_path(post) %>
       <% end %>
 
     <% elsif %w(Article).include?(current_category_name) %>
@@ -28,6 +29,8 @@
 <% end %>
 
 <% if logged_in? %>
+  <div class="admin">
   <%= link_to "新規投稿", new_post_path %>
   <%= link_to "ログアウト", logout_path, method: :delete %>
+  </div>
 <% end %>
