@@ -8,7 +8,7 @@ $(function() {
 
 
 function hideExceptImgs() {
-    $("h2, p").hide();
+    $("h1, p").hide();
 }
 
 
@@ -21,9 +21,9 @@ function showTitleOnHover() {
 
             if (!$(this).children("img").attr("src")) { return; }
 
-            var $h2 = $(this).children("h2");
-            var text = $h2.text();
-            var href = $h2.children("a").attr("href");
+            var $h = $(this).children("h1");
+            var text = $h.text();
+            var href = $h.children("a").attr("href");
 
             var imgPos = $(this).children("img").position();
             var imgWidth = $(this).children("img").width();
@@ -70,7 +70,6 @@ function showTitleOnHover() {
         mouseleave: function() {
 
             $title = $("#title");
-
             $title.remove();
 
         }

@@ -1,43 +1,14 @@
 $(function() {
-
     if (device() == 'pc') {
         transparentOnHover();
     }
-
-    $("#content").css({
-        fontSize: 0
-    });
-
 });
 
 $(window).on("load resize", function() {
-
+    
     if (device() != 'sp') {
         column(2, 4); 
-    } else {
-        $(".clearfix").before('<button>menu</button>');
-        $menu = $("nav button");
-        $list = $("nav ul");
-        $list.hide();
-        $menu.css({
-            float: "right"
-        });
-        $list.css({
-            width: "100%",
-            position: "absolute",
-            backgroundColor: "white",
-            top: $("header").height(),
-            height: $(window).height() - $("header").height()
-        });
-        $list.children().css({
-            borderBottom: "1px solid black",
-            height: "100px"
-        });
-        $list.insertAfter("header");
-        $menu.on("click", function() {
-            $list.slideToggle();
-        });
-    }
+    } 
 
 });
 
@@ -48,7 +19,7 @@ function column(col, mgn) {
 
     $content.css({
         fontSize: 0,
-        margin: 0,
+        marginBottom: 0,
         padding: 0
     });
 
@@ -103,5 +74,6 @@ function column(col, mgn) {
         overflow: "hidden",
         height: Math.max.apply(null, columnHeights)
     });
+
     
 }

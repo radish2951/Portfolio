@@ -5,8 +5,7 @@ module PostsHelper
   end
 
   def current_category
-    path = request.path
-    path = path[1...path.length]
+    path = request.path[1...request.path.length]
     
     # if path is a category name
     if !(category = Category.find_by(name: path.singularize.capitalize)).nil?
@@ -35,14 +34,20 @@ module PostsHelper
     lines = text.split("\n")
     reg = /(?<tag>\S+)\s+(?<string>.+)/
     lines.each_with_index do |line, i|
-      unless (match = reg.match(line)).nil?
+      if !(match = reg.match(line)).nil?
         tags = html_templates_hash[match[:tag]]
         string = match[:string].to_s
         if tags.to_a.length == 2
           lines[i] = tags[0] + string + tags[1]
         elsif match[:tag] == "#img"
           lines[i] = image_tag(string)
+        elsif match[:tag] == "#a"
+          link = string.split(" ")[0]
+          href = string.split(" ")[1]
+          lines[i] = link_to link, href
         end
+      elsif line == ""
+        lines[i] = "<br>"
       end
     end
 
@@ -57,11 +62,21 @@ module PostsHelper
       "####" => ["<h4>", "</h4>"],
       "#p" => ["<p>", "</p>"],
       "#youtube" => [
-        "<div class=\"embed-responsive embed-responsive-16by9\"><iframe class=\"embed-responsive-item\" src=\"https:\/\/www.youtube.com\/embed\/", 
-        "\" frameborder=\"0\" allowfullscreen><\/iframe><\/div>"
+        "<iframe src=\"https:\/\/www.youtube.com\/embed\/", 
+        "\" frameborder=\"0\" allowfullscreen><\/iframe>"
       ]
     }            
   end
 
+  def isIndexPage?
+      path = request.path[1...request.path.length]
+      categories = Category.all.map { |c| c.name }
+
+      if path.length > 1
+          return categories.include?(path.split("/")[0].singularize.capitalize)
+      else
+          false
+      end
+  end
 
 end

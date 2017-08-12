@@ -1,29 +1,21 @@
 <% @posts = @posts.shuffle %>
 <% @posts.each do |post| %>
 
-  <div class="<%= "post post-" + current_category_name.to_s.downcase %>">
-
+  <div class="<%= "post post-" + current_category_name.to_s.downcase -%>">
     <% if %w(Video).include?(current_category_name) %>
-
-      <%= render partial: 'title', locals: { post: post, link: true } %>
-      <%= image_tag post.thumbnail.name unless post.thumbnail.nil? %>
-
+      <%= render partial: 'title', locals: { post: post, link: true } -%>
+      <%= image_tag post.thumbnail.name unless post.thumbnail.nil? -%>
     <% elsif %w(Photo Graphic).include?(current_category_name) %>
-
       <% if post.thumbnail.nil? %>
-        <%= render partial: 'title', locals: { post: post, link: true } %>
+        <%= render partial: 'title', locals: { post: post, link: true } -%>
       <% else %>
-        <%= link_to image_tag(post.thumbnail.name), post_title_path(post) %>
+        <%= link_to image_tag(post.thumbnail.name), post_title_path(post) -%>
       <% end %>
-
     <% elsif %w(Article).include?(current_category_name) %>
-
       <%= render partial: 'title', locals: { post: post, link: true } %>
-      <p><%= post.created_at.localtime %></p>
-      <%= convert_to_html(post.description).html_safe %>
-
+      <p class="date"><%= date(post.created_at.localtime) %></p>
+      <%# convert_to_html(post.description).html_safe %>
     <% end %>
-
   </div>
 
 <% end %>

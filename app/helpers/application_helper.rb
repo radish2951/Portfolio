@@ -9,4 +9,8 @@ module ApplicationHelper
     nil
   end
 
+  def date(time, sep = "-")
+      time.to_s.split(" ")[0].split("-").join(sep)
+  end
+
 end

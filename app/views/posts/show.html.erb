@@ -1,8 +1,9 @@
-<%= render partial: 'title', locals: { post: @post, link: false } %>
+<div class="post single">
+<%= render partial: 'title', locals: { post: @post, link: false } unless current_category_name == "Photo" %>
+<p class="date"><%= date(@post.created_at.localtime) if current_category_name == "Article" %></p>
+<div class="description">
 <%= render partial: 'description', locals: { post: @post } %>
-
-<% if ["Video", "Photo"].include?(current_category_name) %>
-  <%# render partial: 'images', locals: { post: @post, include_thumbnail: false } %>
-<% end %>
+</div>
+</div>
 
 <%= render partial: 'admin_buttons', locals: { post: @post } %>

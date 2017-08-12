@@ -1,5 +1,7 @@
-<% if logged_in? %>                                                                                        
-  <%= link_to "編集", edit_post_path(post) %>                                    
-  <%= link_to_flip post %>                                                       
+<% if logged_in? %>                                                         
+  <div class="admin">
+  <%= link_to "編集", edit_post_path(post) %>                       
+  <%= link_to_flip post %>                                      
   <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  </div>
 <% end %>

@@ -1,6 +1,6 @@
 <%= render 'form' %>
 
-<%= form_for :image, url: images_path, method: :post do |f| %>
+<%= form_for :image, html: { class: "add-img" }, url: images_path, method: :post do |f| %>
 
   <%= f.label "画像を追加" %>
   <%= f.text_field :name, placeholder: "example.jpg" %>
@@ -14,10 +14,10 @@
 <div>
   <% @post.images.each do |image| %>
     <div>
-    <%= image_tag image.name %>
-    <%= image.name %>
+    <%= image_tag image.name, class: "img-edit" %>
+    <span><%= image.name %></span>
     </div>
-    <div>
+    <div class="admin">
       <% if @post.has_thumbnail? and !image.type.nil? %>
         <%= link_to "サムネイル", thumbnailize_image_path(image), method: :patch, class: "unthumbnailize" %>
       <% elsif !@post.has_thumbnail? %>

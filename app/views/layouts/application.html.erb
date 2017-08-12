@@ -9,7 +9,10 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container<%= " content-" + current_category_name.downcase if current_category_name %>" id="content">
+    <% cls = "container" %>
+    <% cls += " content-" + current_category_name.downcase if current_category_name %>
+    <% cls += " index" if isIndexPage? %>
+    <div class="<%= cls %>" id="content">
       <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
