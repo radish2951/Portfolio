@@ -13,7 +13,7 @@ module PostsHelper
       return category
 
     # if path is a post title
-    elsif !(post = Post.find_by(title: URI::unescape(path))).nil?
+    elsif !(post = Post.find_by(title: URI::decode_www_form_component(path))).nil?
       return Category.find_by(id: post.category_id)
 
     # if no match to path
