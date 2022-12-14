@@ -135,6 +135,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.10-x86_64-linux)
+      racc (~> 1.4)
     pg (1.4.5)
     public_suffix (5.0.1)
     puma (4.3.12)
@@ -204,6 +206,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.4-arm64-darwin)
+    sqlite3 (1.5.4-x86_64-linux)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -229,6 +232,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
